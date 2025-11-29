@@ -1,9 +1,30 @@
 import { supabase } from '../supabaseClient';
 
+const getSupabaseAuthKey = () => {
+  try {
+    const url = new URL(supabase.supabaseUrl);
+    const ref = url.hostname.split('.')[0]; // project ref
+    return `sb-${ref}-auth-token`;
+  } catch {
+    return null;
+  }
+};
+
 export const isUserLoggedIn = () => {
-  const token = localStorage.getItem('sb-krgblphvrhpvmneqipqe-auth-token');
-  return !!token;
-}; 
+  const tokenKey = getSupabaseAuthKey();
+  if (!tokenKey) return false;
+
+  const sessionString = localStorage.getItem(tokenKey);
+  if (!sessionString) return false;
+
+  try {
+    const session = JSON.parse(sessionString);
+    return !!session?.access_token;
+  } catch {
+    return false;
+  }
+};
+
 
 async function getUserInfo() {
   const { data: { user }, error } = await supabase.auth.getUser();
