@@ -1,16 +1,13 @@
 // src/supabaseClient.js
 import { createClient } from '@supabase/supabase-js';
-import config from './config';
 
-// Use config values instead of process.env
-const supabaseUrl = "https://pwjjxykvquevlnnytoif.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3amp4eWt2cXVldmxubnl0b2lmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY1MzI2MjYsImV4cCI6MjA3MjEwODYyNn0.84s468HozBePkbsxFuGJfPKV3ZlE4efSTmh0mJmk4MA";
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-// Create and export the main Supabase client
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Create and export the service role client for admin operations
+// Only safe if used server-side (not in the browser!)
 export const supabaseServiceRoleClient = createClient(
-  config.supabaseUrl,
-  config.supabaseServiceRole
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.SUPABASE_SERVICE_ROLE_KEY
 );
