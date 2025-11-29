@@ -5,7 +5,7 @@ import 'monaco-editor/esm/vs/basic-languages/java/java.contribution.js';
 import 'monaco-editor/min/vs/editor/editor.main.css';
 import Editor from "@monaco-editor/react";
 // import * as monaco from "monaco-editor";
-import config from '../config';
+import config from '../utils/config';
 import { AppBar, Toolbar, Select, MenuItem, Button, Link, Box, Typography } from '@mui/material';
 import { Code, ArrowBack, Share, FilePresent, Edit } from '@mui/icons-material';
 import toast, { Toaster } from 'react-hot-toast';
