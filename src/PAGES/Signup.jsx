@@ -38,7 +38,7 @@ const Signup = () => {
         email,
         password,
         options: {
-          emailRedirectTo: window.location.origin
+          emailRedirectTo: "https://snip-share-main.vercel.app/"
         }
       });
       if (error) throw error;
@@ -57,7 +57,7 @@ const Signup = () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: provider,
       options: {
-        redirectTo: window.location.origin
+        redirectTo: "https://snip-share-main.vercel.app/"
       }
     });
 
